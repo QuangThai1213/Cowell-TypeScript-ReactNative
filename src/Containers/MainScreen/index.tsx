@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen} from '@Containers';
 import {ButtonShadow} from '@Components';
@@ -43,6 +44,7 @@ export default class MainScreen extends React.Component<Props, State> {
                   iconName={iconName}
                   size={size}
                   color={color}
+                  customStyle={styles.iconContainer}
                 />
               );
             } else {
@@ -52,6 +54,7 @@ export default class MainScreen extends React.Component<Props, State> {
                   iconName={iconName}
                   size={size}
                   color={color}
+                  customStyle={styles.iconContainer}
                 />
               );
             }
@@ -64,7 +67,8 @@ export default class MainScreen extends React.Component<Props, State> {
           style: {
             height: 105,
             backgroundColor: 'rgba(245,245,250,1)',
-            borderRadius: 20,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           },
         }}>
         <Tab.Screen name="Home" component={HomeScreen} />
@@ -75,3 +79,7 @@ export default class MainScreen extends React.Component<Props, State> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  iconContainer: {marginBottom: 30},
+});

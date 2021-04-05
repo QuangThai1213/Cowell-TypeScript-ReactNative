@@ -7,18 +7,22 @@ export interface Props {
   iconName: string;
   size: number;
   color: string;
+  customStyle: object;
 }
 
-interface State {}
-
-export default class MainScreen extends React.Component<Props, State> {
+export default class MainScreen extends React.Component<Props> {
+  static defaultProps = {
+    active: false,
+    customStyle: {},
+  };
   constructor(props: Props) {
     super(props);
   }
   render() {
+    // console.log(this.props.color);
     if (this.props.active) {
       return (
-        <View style={[styles.shadowContainer, styles.checkMargin]}>
+        <View style={[styles.shadowContainer, this.props.customStyle]}>
           <View style={styles.iconContainer}>
             <Ionicons
               style={styles.icon}
@@ -31,7 +35,8 @@ export default class MainScreen extends React.Component<Props, State> {
       );
     } else {
       return (
-        <View style={[styles.iconContainer, styles.shadow, styles.checkMargin]}>
+        <View
+          style={[styles.iconContainer, styles.shadow, this.props.customStyle]}>
           <Ionicons
             name={this.props.iconName}
             size={this.props.size}
@@ -63,7 +68,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(189,189,189,0.3)',
   },
   icon: {marginBottom: 3, marginRight: 3},
-  checkMargin: {marginBottom: 30},
   shadow: {
     shadowColor: '#000',
     shadowOffset: {
